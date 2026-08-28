@@ -17,3 +17,5 @@ jobs:
         run: pip install -r requirements-dev.txt
       - name: Run tests
         run: pytest -v
+      - name: Audit dependencies for known CVEs
+        run: pip-audit -r requirements.txt

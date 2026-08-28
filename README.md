@@ -92,6 +92,22 @@ curl -X POST http://localhost:5000/api/events/ingest \
   -d '{"category": "ips_alert", "src_ip": "203.0.113.4", "message": "test alert"}'
 ```
 
+## Security notes
+
+- **UDP syslog has no built-in authentication** — anything on the same
+  network segment as `SYSLOG_LISTEN_PORT` can send spoofed events. Restrict
+  it at the network/firewall level to only the UniFi controller's IP, or
+  prefer the `/api/events/ingest` webhook (which is token-authenticated)
+  when the source can reach this host over HTTP instead.
+- `UNIFI_VERIFY_SSL` defaults to `false` to work out of the box against a
+  self-signed controller certificate — this trades away protection against
+  a MITM on that connection. Set it to `true` (and give the controller a
+  real certificate) for anything beyond a trusted local network.
+- Change `FLASK_SECRET_KEY` from its default before using cookies/sessions
+  for anything beyond local development.
+- Dependencies are checked for known CVEs on every CI run (`pip-audit`) —
+  see `.github/workflows/ci.yml`.
+
 ## Running tests
 
 ```bash
