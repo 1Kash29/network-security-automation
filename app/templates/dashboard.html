@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel-grid">
+  <div class="panel">
+    <h2>Devices</h2>
+    <table id="devices-table">
+      <thead><tr><th>Name</th><th>Model</th><th>State</th><th>IP</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <h2>Clients</h2>
+    <table id="clients-table">
+      <thead><tr><th>Name</th><th>IP</th><th>Network</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="panel panel-wide">
+    <h2>Security Events</h2>
+    <table id="events-table">
+      <thead><tr><th>Time</th><th>Severity</th><th>Category</th><th>Source IP</th><th>Message</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
